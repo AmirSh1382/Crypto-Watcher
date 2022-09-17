@@ -6,20 +6,21 @@ const initialState = {
 
 const coinsReducer = (state = initialState, action) => {
     switch(action.type){
-        case "GET_COINS_REQUEST":
+        case "GET_ALL_COINS_REQUEST":
             return{
                 ...state,
                 loading: true,
             }
 
-        case "GET_COINS_SUCCESS":
+        case "GET_ALL_COINS_SUCCESS":
+            // console.log(action.payload);
             return {
                 loading: false,
                 coins: action.payload,
                 error: ""
             }
 
-        case  "GET_COINS_FAILURE":
+        case "GET_ALL_COINS_FAILURE":
             return {
                 coins: [],
                 loading: false,

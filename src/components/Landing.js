@@ -10,15 +10,17 @@ import { Routes, Route } from 'react-router-dom';
 
 // Redux
 import { useDispatch } from 'react-redux';
-import { fetchDataStart } from "../redux/coins/coinsActions"
+import { getAllCoins } from "../redux/coins/coinsActions"
 
 const Landing = () => {
     
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchDataStart())
-    }, [dispatch]) 
+        dispatch(getAllCoins())
+
+        // eslint-disable-next-line
+    }, []) 
 
     return (
         <Routes>

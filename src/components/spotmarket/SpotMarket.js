@@ -25,7 +25,8 @@ const SpotMarket = () => {
     const [ scrollY, setScrollY ] = useState(0)
 
     useEffect(() => {
-        dispatch(SET_PAGINATION_CONFIGS(coins))
+        // To avoid setting configs several times after navigating
+        !paginationState.paginatedCoins.length && dispatch(SET_PAGINATION_CONFIGS(coins))
 
     // eslint-disable-next-line
     },[coinsState])

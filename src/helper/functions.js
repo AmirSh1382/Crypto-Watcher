@@ -8,8 +8,6 @@ const shorten = (text) => {
 // To set initial configs of pagiantion
 const setPaginationConfigs = (state, coins) => {
 
-    const currentPage = 1
-
     const coinsPerPage = state.coinsPerPage
 
     // To set pages count based on coins array length
@@ -17,7 +15,7 @@ const setPaginationConfigs = (state, coins) => {
 
     // To set first page of pagination
     const startIndex = 0
-    const endIndex = currentPage * coinsPerPage
+    const endIndex = state.currentPage * coinsPerPage
 
     // First page Coins
     const paginatedCoins = coins.slice(startIndex, endIndex)
@@ -28,7 +26,7 @@ const setPaginationConfigs = (state, coins) => {
         paginationBtns.push(i)
     }
 
-    return { coinsPerPage, currentPage, pagesCount, paginatedCoins, coins, paginationBtns }
+    return { coinsPerPage, pagesCount, paginatedCoins, coins, paginationBtns }
 }
 
 const setPaginatedItems = (state, page) => {

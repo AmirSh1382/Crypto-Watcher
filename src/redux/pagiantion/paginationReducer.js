@@ -3,10 +3,10 @@ import { setPaginationConfigs, setPaginatedItems } from "../../helper/functions"
 
 const initialState = {
     coinsPerPage: 50,
-    currentPage: 0,
+    currentPage: 1,
     paginatedCoins: [],
     pagesCount: 0,
-    coins: [],
+    coins: null,
     paginationBtns: []
 }
 
@@ -14,6 +14,7 @@ const paginationReducer = (state = initialState, action) => {
     switch(action.type){
         case "SET_PAGINATION_CONFIGS":
             return {
+                ...state,
                 ...setPaginationConfigs(state, action.payload)
             }
 

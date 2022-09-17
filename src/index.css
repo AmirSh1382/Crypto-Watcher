@@ -10,7 +10,7 @@
 }
 
 :root{
-    --primary-color: #fcd34d;
+    --primary-color: rgb(252, 211, 77);
     --primary-hover: #c0a13a;
     --background: rgb(0, 0, 0);
     --text-color: #f5f5f5;
