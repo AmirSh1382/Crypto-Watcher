@@ -54,7 +54,6 @@ const Header = () => {
                                 </li>
                             </Link>
 
-
                             <Link to="/watchlist" onClick={setActive}>
                                 <li>
                                     Watchlist

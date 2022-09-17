@@ -12,7 +12,7 @@ const initialState = {
 
 const paginationReducer = (state = initialState, action) => {
     switch(action.type){
-        case "SET_CONFIGS":
+        case "SET_PAGINATION_CONFIGS":
             return {
                 ...setPaginationConfigs(state, action.payload)
             }

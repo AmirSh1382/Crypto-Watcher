@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import SpotMarket from "./spotmarket/SpotMarket"
 import WatchList from './watchlist/WatchList';
 import AboutProject from './aboutproject/AboutProject';
+import CoinDetail from "./shared/CoinDetail"
 
 // React-router-dom
 import { Routes, Route } from 'react-router-dom';
@@ -24,6 +25,7 @@ const Landing = () => {
             <Route path='/' element={<SpotMarket /> } />
             <Route path='watchlist' element={<WatchList /> } />
             <Route path='aboutproject' element={<AboutProject /> } />
+            <Route path='/coindetail/:id' element={<CoinDetail />} />
         </Routes>
     );
 };

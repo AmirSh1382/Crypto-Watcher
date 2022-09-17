@@ -5,7 +5,6 @@ const GET_COINS_REQUEST = () => {
 };
 
 const GET_COINS_SUCCESS = coins => {
-    // console.log(coins)
   return { type: "GET_COINS_SUCCESS", payload: coins};
 };
 
