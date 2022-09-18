@@ -1,21 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
 // React-Router-dom
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from "react-router-dom";
 
 // Components
-import App from './App';
+import App from "./App";
 
 // Styles
-import "./index.css"
+import "./index.css";
 
 // Axios
-import axios from 'axios';
+import axios from "axios";
 
-axios.defaults.baseURL = "https://api.coingecko.com/"
+axios.defaults.baseURL = "https://api.coingecko.com/";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <App />

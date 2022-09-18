@@ -1,18 +1,14 @@
 import { combineReducers } from "redux";
 
 // Reducers
-import coinsReducer from "./coins/coinsReducer";
-// import coinDetailReducer from "./coindetail/coinDetailReducer";
-// import coinChartReducer from "./coinchart/coinChartReducer";
-import coinReducer from "./test/coinReducer";
+import coinsReducer from "./coinsData/coinsReducer";
+import coinReducer from "./coinData/coinReducer";
 import paginationReducer from "./pagiantion/paginationReducer";
 
 const rootReducer = combineReducers({
-    coinsState: coinsReducer,
-    coinState: coinReducer,
-    // coinDetailState: coinDetailReducer,
-    // coinChartState: coinChartReducer,
-    paginationState: paginationReducer
-})
+  coinsState: coinsReducer,
+  coinState: coinReducer,
+  paginationState: paginationReducer,
+});
 
-export default rootReducer
+export default rootReducer;

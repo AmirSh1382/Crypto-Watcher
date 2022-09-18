@@ -1,43 +1,43 @@
 // Functions
-import { setPaginationConfigs, setPaginatedItems } from "../../helper/functions"
+import { setPaginationConfigs, setPaginatedItems } from "../../helper/functions";
 
 const initialState = {
-    coinsPerPage: 50,
-    currentPage: 1,
-    paginatedCoins: [],
-    pagesCount: 0,
-    coins: null,
-    paginationBtns: []
-}
+  coinsPerPage: 50,
+  currentPage: 1,
+  paginatedCoins: [],
+  pagesCount: 0,
+  coins: null,
+  paginationBtns: [],
+};
 
 const paginationReducer = (state = initialState, action) => {
-    switch(action.type){
-        case "SET_PAGINATION_CONFIGS":
-            return {
-                ...state,
-                ...setPaginationConfigs(state, action.payload)
-            }
+  switch (action.type) {
+    case "SET_PAGINATION_CONFIGS":
+      return {
+        ...state,
+        ...setPaginationConfigs(state, action.payload),
+      };
 
-        case "NEXT_PAGE":
-            const nextPage = state.currentPage < state.pagesCount ? state.currentPage + 1 : state.currentPage
-            return {
-                ...setPaginatedItems(state, nextPage)
-            }
+    case "NEXT_PAGE":
+      const nextPage = state.currentPage < state.pagesCount ? state.currentPage + 1 : state.currentPage;
+      return {
+        ...setPaginatedItems(state, nextPage),
+      };
 
-        case "PREV_PAGE":
-            const prevPage = state.currentPage > 1 ? state.currentPage - 1 : state.currentPage
-            return {
-                ...setPaginatedItems(state, prevPage)
-            }
+    case "PREV_PAGE":
+      const prevPage = state.currentPage > 1 ? state.currentPage - 1 : state.currentPage;
+      return {
+        ...setPaginatedItems(state, prevPage),
+      };
 
-        case "SET_PAGE":
-            return {
-                ...setPaginatedItems(state, action.payload)
-            }
+    case "SET_PAGE":
+      return {
+        ...setPaginatedItems(state, action.payload),
+      };
 
-        default:
-            return state
-    }
-}
+    default:
+      return state;
+  }
+};
 
-export default paginationReducer
+export default paginationReducer;
