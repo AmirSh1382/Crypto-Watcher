@@ -1,7 +1,6 @@
 const initialState = {
   coinId: "",
   error: "",
-  loading: true,
   chartData: null,
   coinData: null,
   defaultChartDate: null,
@@ -12,7 +11,6 @@ const coinReducer = (state = initialState, action) => {
     case "GET_COIN_DATA_SUCCESS":
       return {
         ...state,
-        loading: false,
         coinId: action.payload.coinId,
         chartData: action.payload.chartData,
         coinData: action.payload.coinData,
@@ -22,7 +20,6 @@ const coinReducer = (state = initialState, action) => {
     case "GET_COIN_DATA_FAILURE":
       return {
         ...state,
-        loading: false,
         error: action.payload,
       };
 

@@ -1,11 +1,14 @@
-import React from 'react';
+import React from "react";
+
+// React-spinner
+import { RingLoader } from "react-spinners";
 
 const Loading = () => {
-    return (
-        <div>
-            Loading
-        </div>
-    );
+  return (
+    <div className="flex items-center justify-center flex-1">
+      <RingLoader color="#fcd34d" />
+    </div>
+  );
 };
 
 export default Loading;

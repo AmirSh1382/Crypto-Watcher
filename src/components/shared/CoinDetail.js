@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 // Componetns
 import ChartElement from "./ChartElement";
+import Loading from "./Loading"
 
 // React-router-dom
 import { useParams } from "react-router-dom";
@@ -24,9 +25,10 @@ const CoinDetail = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
-  const coinState = useSelector((state) => state.coinState);
 
-  const { coinId, chartData, defaultChartDate, coinData, error } = coinState;
+  const coinState = useSelector(state => state.coinState);
+
+  const { chartData, defaultChartDate, coinData, error } = coinState;
 
   useEffect(() => {
     dispatch(RESET_STATE());
@@ -41,15 +43,17 @@ const CoinDetail = () => {
     </div>
   )
 
-  if (!defaultChartDate && !chartData && !coinData) return <div>Loaing</div>;
+  if (!defaultChartDate && !chartData && !coinData) return <Loading /> ;
 
-  const { image, market_data, market_cap_rank } = coinData
+  const { image, market_data } = coinData
+
   const { 
     current_price,
     market_cap,
     market_cap_change_percentage_24h,
     price_change_percentage_24h,
     circulating_supply, max_supply,
+    market_cap_rank,
     total_supply,
     ath,
     atl,
@@ -60,7 +64,7 @@ const CoinDetail = () => {
   } = market_data
 
   return (
-    <div className="max-w-6xl w-full mx-auto my-10 px-3 md:px-12">
+    <div className="max-w-6xl w-full mx-auto mt-10 mb-14 px-3 md:px-12">
 
       <div className="flex items-center flex-col mb-10">
         {/* Img */}
@@ -83,24 +87,22 @@ const CoinDetail = () => {
 
       {/* Chart */}
       <div>
-        <ChartElement
-          coinId={coinId}
-          chartData={chartData}
-          defaultChartDate={defaultChartDate}
-        />
+        <ChartElement />
       </div>
 
-      <div className="max-w-xl mx-auto">
+      <div className="max-w-xl divide-y divide-stone-800 mx-auto">
         {/* Rank */}
-        <div className="px-5 mt-5">
+        <div className="px-5 py-3">
           <div className="text-sm text-slate-400 mb-1">Rank</div>
           <div className="font-semibold">#{market_cap_rank}</div>
         </div>
 
         {/* Market Cap */}
-        <div className="flex items-center justify-between px-5 mt-5">
+        <div className="flex items-center justify-between px-5 py-3">
           <div>
-            <div className="text-sm text-slate-400 mb-1">Market Cap</div>
+            <div className="text-sm text-slate-400 mb-1">
+              Market Cap
+            </div>
             <div className="font-semibold">
               ${market_cap.usd.toLocaleString()}
             </div>
@@ -113,7 +115,7 @@ const CoinDetail = () => {
         </div>
 
         {/* All time high */}
-        <div className="flex items-center justify-between px-5 mt-5">
+        <div className="flex items-center justify-between px-5 py-3">
           <div>
             <div className="text-xs md:text-sm text-slate-400 mb-1">
               All Time High 
@@ -124,14 +126,14 @@ const CoinDetail = () => {
             </div>
           </div>
           <div className={`${ath_change_percentage.usd < 0 ? "text-rose-700" : "text-emerald-500"}`}>
-            {ath_change_percentage.usd> 0 ? <MovingIcon /> : <TrendingDownIcon />}
+            {ath_change_percentage.usd > 0 ? <MovingIcon /> : <TrendingDownIcon />}
             &nbsp;
             {ath_change_percentage.usd.toFixed(2)}%
           </div>
         </div>
 
         {/* All time low */}
-        <div className="flex items-center justify-between px-5 mt-5">
+        <div className="flex items-center justify-between px-5 py-3">
           <div>
             <div className="text-xs md:text-sm text-slate-400 mb-1">
               All Time Low 
@@ -149,7 +151,7 @@ const CoinDetail = () => {
         </div>
 
         {/* Circulating supply */}
-        <div className="px-5 mt-5">
+        <div className="px-5 py-3">
           <div className="text-slate-400 text-sm mb-1">Circulating Supply</div>
           <div>
             <span className="font-semibold">
@@ -162,7 +164,7 @@ const CoinDetail = () => {
         {/* Max supply */}
         {
           max_supply && (
-            <div className="px-5 mt-5">
+            <div className="px-5 py-3">
               <div className="text-slate-400 text-sm mb-1">
                 Max Supply
               </div>
@@ -176,7 +178,7 @@ const CoinDetail = () => {
         {/* Total supply */}
         {
           total_supply && (
-            <div className="px-5 mt-5">
+            <div className="px-5 py-3">
               <div className="text-slate-400 text-sm mb-1">
                 Total Supply
               </div>

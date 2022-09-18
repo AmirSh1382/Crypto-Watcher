@@ -1,4 +1,5 @@
-const shorten = (text) => {
+// To abbreviate a text
+const shorten = text => {
     const splitedText = text.split(" ")
     const newText = splitedText[0]
 
@@ -20,6 +21,7 @@ const setPaginationConfigs = (state, coins) => {
     // First page Coins
     const paginatedCoins = coins.slice(startIndex, endIndex)
 
+    // to set Pagination btns count
     const paginationBtns = []
 
     for(let i = 1; i <= pagesCount; i++){
@@ -29,6 +31,7 @@ const setPaginationConfigs = (state, coins) => {
     return { coinsPerPage, pagesCount, paginatedCoins, coins, paginationBtns }
 }
 
+// to slice the coins array for pagination based on the new page number
 const setPaginatedItems = (state, page) => {
 
     const { coinsPerPage, coins } = state

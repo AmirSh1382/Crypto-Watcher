@@ -20,7 +20,12 @@ const SkeletonLoading = () => {
       {skeleton.map((item) => (
         <div className="flex items-center mb-3" key={item}>
           <Skeleton
-            sx={{backgroundColor: "rgba(41, 54, 68)",width: "40px", minWidth: "40px", height: "40px", marginRight: "10px"}}
+            sx={{backgroundColor: "rgba(41, 54, 68)",
+              width: "40px",
+              minWidth: "40px",
+              height: "40px",
+              marginRight: "10px"
+            }}
             animation="wave"
             variant="circular"
           />
@@ -28,7 +33,7 @@ const SkeletonLoading = () => {
             <Skeleton
               sx={{ backgroundColor: "rgba(41, 54, 68)" }}
               animation="wave"
-              height={43}
+              height={40}
             />
           </Box>
         </div>

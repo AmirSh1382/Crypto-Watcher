@@ -1,17 +1,27 @@
+// Axios
 import axios from "axios";
 
-const GET_COIN_DATA_FAILURE = error => {
-  return { type: "GET_COIN_DATA_FAILURE", payload: error };
-};
-
+// To return success status action
 const GET_COIN_DATA_SUCCESS = data => {
   return { type: "GET_COIN_DATA_SUCCESS", payload: data };
 };
 
+// To return failure status action
+const GET_COIN_DATA_FAILURE = error => {
+  return { type: "GET_COIN_DATA_FAILURE", payload: error };
+};
+
+// To change default time format of chart
+const CHANGE_CHART_DATE = format => {
+  return { type: "CHANGE_CHART_DATE", payload: format }
+}
+
+// To return reset coin state action
 const RESET_STATE = () => {
   return { type: "RESET_STATE" };
 };
 
+// sending request to get coin chart data and market data from API
 const getCoinDataRequest = (coinId) => {
   return async (dispatch) => {
     const dailyUrl = `api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=1`;
@@ -78,4 +88,4 @@ const getCoinDataRequest = (coinId) => {
   };
 };
 
-export { getCoinDataRequest, RESET_STATE };
+export { getCoinDataRequest, RESET_STATE, CHANGE_CHART_DATE };

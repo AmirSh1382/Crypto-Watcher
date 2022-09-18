@@ -12,11 +12,11 @@ import { SET_PAGINATION_CONFIGS } from "../../redux/pagiantion/paginationActions
 const SpotMarket = () => {
   const dispatch = useDispatch();
 
-  const coinsState = useSelector((state) => state.coinsState);
+  const coinsState = useSelector(state => state.coinsState);
 
   const { loading, error, coins } = coinsState;
 
-  const paginationState = useSelector((state) => state.paginationState);
+  const paginationState = useSelector(state => state.paginationState);
 
   useEffect(() => {
     // To avoid setting configs several times
