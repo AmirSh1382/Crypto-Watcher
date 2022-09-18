@@ -3,7 +3,7 @@ const initialState = {
   error: "",
   loading: true,
   chartData: null,
-  coinDetail: null,
+  coinData: null,
   defaultChartDate: null,
 };
 
@@ -15,7 +15,7 @@ const coinReducer = (state = initialState, action) => {
         loading: false,
         coinId: action.payload.coinId,
         chartData: action.payload.chartData,
-        coinDetail: action.payload.coinDetail,
+        coinData: action.payload.coinData,
         defaultChartDate: action.payload.chartData.daily,
       };
 

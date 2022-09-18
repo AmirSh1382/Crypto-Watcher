@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
       <Footer />
 
       {/* to show scroll to top btn based on scrollY */}
-      {scrollY > 600 && (
+      {scrollY > 300 && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="fixed text-white bottom-10 left-8 rounded-full bg-amber-300

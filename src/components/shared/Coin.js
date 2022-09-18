@@ -29,7 +29,7 @@ const Coin = ({ coin }) => {
             <div>
               <div>
                 {symbol.toUpperCase()}
-                <span className="text-sm text-slate-500	">/{shorten(name)}</span>
+                <span className="text-sm text-slate-500">/{shorten(name)}</span>
               </div>
               <div className="text-slate-500 text-xs">
                 Vol: {(total_volume / 1000000).toFixed(2)}M

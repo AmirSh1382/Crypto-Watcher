@@ -52,7 +52,7 @@ const Header = () => {
 
               <Link to="/watchlist" onClick={() => {setActiveItem("watchlist"); closeMenu()}}>
                 <li className={activeItem === "watchlist" ? styles.active : ""}>
-                  Watchlist
+                  Watch List
                 </li>
               </Link>
 

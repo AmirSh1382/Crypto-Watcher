@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const GET_COIN_DATA_FAILURE = (error) => {
+const GET_COIN_DATA_FAILURE = error => {
   return { type: "GET_COIN_DATA_FAILURE", payload: error };
 };
 
-const GET_COIN_DATA_SUCCESS = (data) => {
+const GET_COIN_DATA_SUCCESS = data => {
   return { type: "GET_COIN_DATA_SUCCESS", payload: data };
 };
 
@@ -19,7 +19,7 @@ const getCoinDataRequest = (coinId) => {
     const monthlyUrl = `api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=30`;
     const yearlyUrl = `api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=360`;
 
-    const coinDetailUrl = `api/v3/coins/${coinId}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false`;
+    const coinDetailUrl = `api/v3/coins/${coinId}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`;
 
     axios.all([
       axios.get(dailyUrl),
@@ -40,7 +40,7 @@ const getCoinDataRequest = (coinId) => {
           weeklyResponse,
           monthlyResponse,
           yearlyResponse,
-          coinDetail
+          coinDetailResponse
         ) => {
           // To set chart data foramts configs (x: time, y: chart data)
           const dailyData = dailyResponse.data.prices.map(value => ({
@@ -67,7 +67,9 @@ const getCoinDataRequest = (coinId) => {
             yearly: { data: yearlyData, format: "MMM YYYY" },
           };
 
-          const finallData = { chartData, coinDetail, coinId };
+          const coinData = coinDetailResponse.data
+
+          const finallData = { chartData, coinData, coinId };
 
           dispatch(GET_COIN_DATA_SUCCESS(finallData));
         }
