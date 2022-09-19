@@ -55,8 +55,8 @@ const ChartElement = () => {
       <div className="flex justify-center mt-5 mx-auto rounded w-fit">
         <button
           className={`${ defaultChartDate.format === "ha" ? "bg-amber-300 text-black" : "" }
-            border border-amber-300 text-amber-300 rounded text-md mx-2 w-12 transition duration-100
-            focus:scale-70`
+            border border-amber-300 text-amber-300 rounded text-md mx-2 w-12 transition duration-50
+            active:scale-90`
           }
           onClick={() => dispatch(CHANGE_CHART_DATE(chartData.daily))}
         >
@@ -65,8 +65,8 @@ const ChartElement = () => {
 
         <button
           className={`${ defaultChartDate.format === "DD MMM" ? "bg-amber-300 text-black" : "" }
-            border border-amber-300 text-amber-300 rounded text-md mx-2 w-12 transition duration-100
-            focus:scale-70`
+            border border-amber-300 text-amber-300 rounded text-md mx-2 w-12 transition duration-50
+            active:scale-90`
           }
           onClick={() => dispatch(CHANGE_CHART_DATE(chartData.weekly))}
         >
@@ -75,8 +75,8 @@ const ChartElement = () => {
 
         <button
           className={`${ defaultChartDate.format === "MMM DD" ? "bg-amber-300 text-black" : "" }
-            border border-amber-300 text-amber-300 rounded text-md mx-2 w-12 transition duration-100
-            focus:scale-70`
+            border border-amber-300 text-amber-300 rounded text-md mx-2 w-12 transition duration-50
+            active:scale-90`
           }
           onClick={() => dispatch({ type: "CHANGE_CHART_DATE", payload: chartData.monthly })}
         >
@@ -85,8 +85,8 @@ const ChartElement = () => {
 
         <button
           className={`${ defaultChartDate.format === "MMM YYYY" ? "bg-amber-300 text-black" : "" }
-            border border-amber-300 text-amber-300 rounded text-md mx-2 w-12 transition duration-100
-            focus:scale-70`
+            border border-amber-300 text-amber-300 rounded text-md mx-2 w-12 transition duration-50
+            active:scale-90`
           }
           onClick={() => dispatch({ type: "CHANGE_CHART_DATE", payload: chartData.yearly })}
         >

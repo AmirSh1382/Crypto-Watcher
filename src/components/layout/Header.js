@@ -12,24 +12,31 @@ import CloseIcon from "@mui/icons-material/Close";
 import styles from "./Header.module.css";
 
 const Header = () => {
+  
   const [isOpen, setIsOpen] = useState(false);
-
-  const [activeItem, setActiveItem] = useState("spotMarket");
-
+  
+  const [path, setPath] = useState("/");
+  
   const openMenu = () => {
     setIsOpen(true);
   };
-
+  
   const closeMenu = () => {
     setIsOpen(false);
   };
 
+  window.addEventListener("popstate" , () => {
+    setPath(window.location.pathname)
+  })
+
+  console.log(path)
+
   return (
     <header className="shadow-xl w-full">
-      <nav className="max-w-6xl flex justify-between mx-auto py-5 px-3 md:px-12">
+      <nav className="max-w-5xl flex justify-between mx-auto py-5 px-3 md:px-12">
 
         {/* LOGO */}
-        <Link to="/" onClick={() => {setActiveItem("spotMarket"); closeMenu() }}>
+        <Link to="/" onClick={() => setPath("/")}>
           <div className="flex items-center">
             <PaidOutlinedIcon className="text-amber-300" />
             <div className="font-bold">
@@ -44,20 +51,20 @@ const Header = () => {
           <div className={`${styles.navbar} ${isOpen ? styles.open : styles.hide}`}>
             <CloseIcon className={styles.closeIcon} onClick={closeMenu} />
             <ul>
-              <Link to="/aboutproject" onClick={() => {setActiveItem("aboutProject"); closeMenu()}}>
-                <li className={activeItem === "aboutProject" ? styles.active : ""}>
+              <Link to="/aboutproject" onClick={() => {setPath("/aboutproject") ;closeMenu()}}>
+                <li className={path === "/aboutproject" ? styles.active : ""}>
                   About Project
                 </li>
               </Link>
 
-              <Link to="/watchlist" onClick={() => {setActiveItem("watchlist"); closeMenu()}}>
-                <li className={activeItem === "watchlist" ? styles.active : ""}>
-                  Watch List
+              <Link to="/watchlist" onClick={() => {setPath("/watchlist") ;closeMenu()}}>
+                <li className={path === "/watchlist" ? styles.active : ""}>
+                  Watchlist
                 </li>
               </Link>
 
-              <Link to="/" onClick={() => {setActiveItem("spotMarket"); closeMenu()}}>
-                <li className={activeItem === "spotMarket" ? styles.active : ""}>
+              <Link to="/" onClick={() => {setPath("/") ;closeMenu()}}>
+                <li className={path === "/" ? styles.active : ""}>
                   Spot Markets
                 </li>
               </Link>

@@ -14,8 +14,16 @@ const Layout = ({ children }) => {
     setScrollY(window.scrollY);
   });
 
+
+
+  const [ minHeight, setMinHeight ] = useState(visualViewport.height + "px")
+
+  window.addEventListener("resize" , () => {
+    setMinHeight(visualViewport.height + "px")
+  })
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div style={{minHeight: `${minHeight}`}} className="flex flex-col">
       <Header />
       {children}
       <Footer />

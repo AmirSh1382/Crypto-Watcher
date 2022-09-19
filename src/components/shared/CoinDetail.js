@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 // Componetns
+import CoinMarketData from "./CoinMarketData";
 import ChartElement from "./ChartElement";
 import Loading from "./Loading"
 
@@ -15,9 +16,14 @@ import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import { useSelector, useDispatch } from "react-redux";
 import { getCoinDataRequest } from "../../redux/coinData/coinActions";
 import { RESET_STATE } from "../../redux/coinData/coinActions";
+import { ADD_COIN_TO_WATCHLIST, REMOVE_FROM_WATCHLIST } from "../../redux/watchlist/watchlistActions"
 
-// Momnet js
-import moment from "moment";
+// Fucntions
+import { isInWatchlist } from "../../helper/functions";
+
+// React-toastify
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const CoinDetail = () => {
 
@@ -29,6 +35,8 @@ const CoinDetail = () => {
   const coinState = useSelector(state => state.coinState);
 
   const { chartData, defaultChartDate, coinData, error } = coinState;
+
+  const watchlistState = useSelector(state => state.watchlistState)
 
   useEffect(() => {
     // To scroll to top on load
@@ -50,25 +58,22 @@ const CoinDetail = () => {
 
   const { image, market_data } = coinData
 
-  const { 
-    current_price,
-    market_cap,
-    market_cap_change_percentage_24h,
-    price_change_percentage_24h,
-    circulating_supply, max_supply,
-    market_cap_rank,
-    total_supply,
-    ath,
-    atl,
-    ath_date,
-    atl_date,
-    ath_change_percentage,
-    atl_change_percentage,
-  } = market_data
+  const { current_price, price_change_percentage_24h } = market_data
+
+  const addToWatchlist = coinId => {
+    dispatch(ADD_COIN_TO_WATCHLIST(coinId))
+
+    toast.success(`${coinId} added to your watchlist`)
+  }
+
+  const removeFromWatchlist = coinId => {
+    dispatch(REMOVE_FROM_WATCHLIST(coinId))
+
+    toast.error(`${coinId} removed from watchlist`)
+  }
 
   return (
-    <div className="max-w-6xl w-full mx-auto my-10 px-3 md:px-12">
-
+    <div className="max-w-5xl w-full mx-auto my-10 px-3 md:px-12">
       <div className="flex items-center flex-col">
         {/* Img */}
         <img className="w-20 md:w-28" src={image.large} alt={id} />
@@ -93,105 +98,44 @@ const CoinDetail = () => {
         <ChartElement />
       </div>
 
-      <div className="max-w-xl divide-y divide-stone-800 mx-auto">
-        {/* Rank */}
-        <div className="px-5 py-3">
-          <div className="text-sm text-slate-400 mb-1">Rank</div>
-          <div className="font-semibold">#{market_cap_rank}</div>
-        </div>
+      {/* Watch list btn */}
+      {
+        <>
+          <ToastContainer 
+            toastStyle={{
+              backgroundColor: "rgb(30,30,30)",
+              color: "rgba(255,255,255,0.9)"
+            }} 
+          />
+          <div className="max-w-5xl mx-auto px-5 py-3 text-end">
+            {
+              isInWatchlist(watchlistState, id) ? (
+                <button 
+                  onClick={() => removeFromWatchlist(id)}
+                  className="border rounded border-rose-700 text-rose-700
+                    transition during-50 py-1 px-2 active:scale-90"
+                  >
+                  Remove From Watchlist
+                </button>
+              ) : (
+                <button 
+                  onClick={() => addToWatchlist(id)}
+                  className="rounded text-black bg-amber-300 
+                    transition during-50 py-1 px-2 active:scale-90"
+                  >
+                  Add To Watchlist
+                </button>
+              )
+            }
+          </div>
+        </>
+      }
 
-        {/* Market Cap */}
-        <div className="flex items-center justify-between px-5 py-3">
-          <div>
-            <div className="text-sm text-slate-400 mb-1">
-              Market Cap
-            </div>
-            <div className="font-semibold">
-              ${market_cap.usd.toLocaleString()}
-            </div>
-          </div>
-          <div className={`${market_cap_change_percentage_24h < 0 ? "text-rose-700" : "text-emerald-500"}`}>
-            {market_cap_change_percentage_24h > 0 ? <MovingIcon /> : <TrendingDownIcon />}
-            &nbsp;
-            {market_cap_change_percentage_24h.toFixed(2)}%
-          </div>
-        </div>
-
-        {/* All time high */}
-        <div className="flex items-center justify-between px-5 py-3">
-          <div>
-            <div className="text-xs md:text-sm text-slate-400 mb-1">
-              All Time High 
-              ({moment(ath_date.usd).format("MMMMDD,YYYY")})
-            </div>
-            <div className="font-semibold">
-              ${ath.usd.toLocaleString()}
-            </div>
-          </div>
-          <div className={`${ath_change_percentage.usd < 0 ? "text-rose-700" : "text-emerald-500"}`}>
-            {ath_change_percentage.usd > 0 ? <MovingIcon /> : <TrendingDownIcon />}
-            &nbsp;
-            {ath_change_percentage.usd.toFixed(2)}%
-          </div>
-        </div>
-
-        {/* All time low */}
-        <div className="flex items-center justify-between px-5 py-3">
-          <div>
-            <div className="text-xs md:text-sm text-slate-400 mb-1">
-              All Time Low 
-              ({moment(atl_date.usd).format("MMMMDD,YYYY")})
-            </div>
-            <div className="font-semibold">
-              ${atl.usd.toLocaleString()}
-            </div>
-          </div>
-          <div className={`${atl_change_percentage.usd < 0 ? "text-rose-700" : "text-emerald-500"}`}>
-            {atl_change_percentage.usd > 0 ? <MovingIcon /> : <TrendingDownIcon />}
-            &nbsp;
-            {atl_change_percentage.usd.toFixed(2)}%
-          </div>
-        </div>
-
-        {/* Circulating supply */}
-        <div className="px-5 py-3">
-          <div className="text-slate-400 text-sm mb-1">Circulating Supply</div>
-          <div>
-            <span className="font-semibold">
-              {circulating_supply.toLocaleString()}
-            </span>
-            <span className="text-xs text-slate-400"> tokens</span>
-          </div>
-        </div>
-
-        {/* Max supply */}
-        {
-          max_supply && (
-            <div className="px-5 py-3">
-              <div className="text-slate-400 text-sm mb-1">
-                Max Supply
-              </div>
-              <div className="font-semibold">
-                {max_supply.toLocaleString()}
-              </div>
-            </div>
-          )
-        }
-
-        {/* Total supply */}
-        {
-          total_supply && (
-            <div className="px-5 py-3">
-              <div className="text-slate-400 text-sm mb-1">
-                Total Supply
-              </div>
-              <div>
-                {total_supply.toLocaleString()}
-              </div>
-            </div>
-          )
-        }
+      {/* Market Data */}
+      <div>
+        <CoinMarketData />
       </div>
+
     </div>
   );
 };

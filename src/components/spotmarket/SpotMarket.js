@@ -8,6 +8,7 @@ import Pagination from "./Pagination";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { SET_PAGINATION_CONFIGS } from "../../redux/pagiantion/paginationActions";
+import { GET_WATCHLIST_COINSID_FROM_LOCAL_STORAGE } from '../../redux/watchlist/watchlistActions';
 
 const SpotMarket = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ const SpotMarket = () => {
     // To avoid setting configs several times
     !paginationState.paginatedCoins.length && dispatch(SET_PAGINATION_CONFIGS(coins));
 
+    //To get watchlist coins id from local storage
+    dispatch(GET_WATCHLIST_COINSID_FROM_LOCAL_STORAGE())
+
     // eslint-disable-next-line
   }, [coinsState]);
 
@@ -33,10 +37,10 @@ const SpotMarket = () => {
   )
 
   // Loading
-  if (loading) return <SkeletonLoading /> 
+  if (loading) return <SkeletonLoading />
 
   return (
-    <div className="max-w-6xl mx-auto w-full px-6 md:px-12 my-10">
+    <div className="max-w-5xl mx-auto w-full px-6 md:px-12 my-10">
       <div className="font-bold text-xl">Market</div>
 
         {/* Coins */}

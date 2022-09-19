@@ -46,4 +46,53 @@ const setPaginatedItems = (state, page) => {
     return { ...state, paginatedCoins,  currentPage }
 }
 
+const isInWatchlist = (state, coinId) => {
+    const mainCoin = state.coinsId.find(coin => coin === coinId)
+
+    return mainCoin ? true : false
+}
+
+const addToWatchlist = (state , coinId) => {
+    
+    if(!state.coinsId.find(coin => coin === coinId)){
+        state.coinsId.push(coinId)
+    }
+
+    setWatchlistCoinsIdToLocalStorage(state.coinsId)
+    
+    return { ...state }
+}
+
+const removeFromWatchlist = (state, coinId) => {
+    const mainCoinIndex = state.coinsId.findIndex(coin => coin === coinId)
+    
+    if(mainCoinIndex >= 0){
+        state.coinsId.splice(mainCoinIndex , 1)
+    }
+    
+    setWatchlistCoinsIdToLocalStorage(state.coinsId)
+    
+    return { ...state }
+}
+
+const getWachlistCoinsData = (allCoins, watchlistCoinsId) => {
+    const coins = watchlistCoinsId.map(coinId => allCoins.find(coin => coin.id === coinId))
+    
+    return { coins }
+}
+
+const getWatchlistCoinsIdFromLocalStorage = () => {
+
+    const coinsId = JSON.parse(localStorage.getItem("watchlist"))
+
+    return { coinsId }
+}
+
+const setWatchlistCoinsIdToLocalStorage = coins => {
+    localStorage.setItem("watchlist", JSON.stringify(coins))
+}
+
+
 export { shorten, setPaginationConfigs, setPaginatedItems }
+export { addToWatchlist, removeFromWatchlist, isInWatchlist }
+export { getWatchlistCoinsIdFromLocalStorage, getWachlistCoinsData }
