@@ -31,6 +31,9 @@ const CoinDetail = () => {
   const { chartData, defaultChartDate, coinData, error } = coinState;
 
   useEffect(() => {
+    // To scroll to top on load
+    window.scrollTo({top: 0, behavior: "smooth"})
+
     dispatch(RESET_STATE());
     dispatch(getCoinDataRequest(id));
 
@@ -64,9 +67,9 @@ const CoinDetail = () => {
   } = market_data
 
   return (
-    <div className="max-w-6xl w-full mx-auto mt-10 mb-14 px-3 md:px-12">
+    <div className="max-w-6xl w-full mx-auto my-10 px-3 md:px-12">
 
-      <div className="flex items-center flex-col mb-10">
+      <div className="flex items-center flex-col">
         {/* Img */}
         <img className="w-20 md:w-28" src={image.large} alt={id} />
         {/* Current price */}

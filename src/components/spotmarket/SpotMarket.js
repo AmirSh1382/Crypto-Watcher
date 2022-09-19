@@ -25,28 +25,30 @@ const SpotMarket = () => {
     // eslint-disable-next-line
   }, [coinsState]);
 
+  // Error handling
+  if (error) return (
+    <div className="flex flex-1 items-center justify-center font-semibold">
+      {error}
+    </div>
+  )
+
+  // Loading
+  if (loading) return <SkeletonLoading /> 
+
   return (
     <div className="max-w-6xl mx-auto w-full px-6 md:px-12 my-10">
       <div className="font-bold text-xl">Market</div>
 
-      {/* Skeleton Loading */}
-      {loading && <SkeletonLoading />}
+        {/* Coins */}
+        <div className="mt-5 mb-12">
+          {paginationState.paginatedCoins.map(coin => <Coin key={coin.id} coin={coin} /> )}
+        </div>
 
-      {/* Error */}
-      {error && <div> {error} </div>}
+        {/* Pagination */}
+        <div className="flex items-center justify-center">
+          <Pagination />
+        </div>
 
-      {/* Coins & Pagination */}
-      {coins.length !== 0 && (
-        <>
-          <div className="mt-5 mb-12">
-            {paginationState.paginatedCoins.map((coin) => <Coin key={coin.id} coin={coin} /> )}
-          </div>
-
-          <div className="flex items-center justify-center">
-            <Pagination />
-          </div>
-        </>
-      )}
     </div>
   );
 };

@@ -24,8 +24,8 @@ const Layout = ({ children }) => {
       {scrollY > 300 && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed text-white bottom-10 left-8 rounded-full bg-amber-300
-            text-zinc-900 p-1 cursor-pointer active:scale-75 transition duration-100"
+          className="fixed bottom-10 left-8 rounded-full bg-amber-300 text-zinc-900
+            w-9 h-9 cursor-pointer active:scale-75 transition duration-100"
         >
           <KeyboardArrowUpIcon />
         </button>

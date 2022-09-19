@@ -16,7 +16,7 @@ const SkeletonLoading = () => {
   }, []);
 
   return (
-    <div className="container max-w-6xl mx-auto px-5 my-10">
+    <div className="container max-w-6xl mx-auto px-5 md:px-12 my-10">
       {skeleton.map((item) => (
         <div className="flex items-center mb-3" key={item}>
           <Skeleton
