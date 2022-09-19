@@ -19,16 +19,20 @@ const Header = () => {
   
   const openMenu = () => {
     setIsOpen(true);
+
+    document.body.style.overflow = "hidden"
   };
   
   const closeMenu = () => {
     setIsOpen(false);
+
+    document.body.style.overflow = "auto"
   };
 
   window.addEventListener("popstate" , () => {
     setPath(window.location.pathname)
   })
-
+  
   return (
     <header className="shadow-xl w-full">
       <nav className="max-w-5xl flex justify-between mx-auto py-5 px-3 md:px-12">

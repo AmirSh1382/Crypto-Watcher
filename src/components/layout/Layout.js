@@ -14,8 +14,6 @@ const Layout = ({ children }) => {
     setScrollY(window.scrollY);
   });
 
-
-
   const [ minHeight, setMinHeight ] = useState(visualViewport.height + "px")
 
   window.addEventListener("resize" , () => {
