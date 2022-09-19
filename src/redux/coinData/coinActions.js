@@ -12,8 +12,8 @@ const GET_COIN_DATA_FAILURE = error => {
 };
 
 // To change default time format of chart
-const CHANGE_CHART_DATE = format => {
-  return { type: "CHANGE_CHART_DATE", payload: format }
+const CHANGE_CHART_DATE_FORMAT = format => {
+  return { type: "CHANGE_CHART_DATE_FORMAT", payload: format }
 }
 
 // To return reset coin state action
@@ -88,4 +88,4 @@ const getCoinDataRequest = (coinId) => {
   };
 };
 
-export { getCoinDataRequest, RESET_STATE, CHANGE_CHART_DATE };
+export { getCoinDataRequest, RESET_STATE, CHANGE_CHART_DATE_FORMAT };

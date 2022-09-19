@@ -1,9 +1,14 @@
 // Functions
-import { addToWatchlist, removeFromWatchlist, getWatchlistCoinsIdFromLocalStorage, getWachlistCoinsData } from "../../helper/functions";
+import {
+  addToWatchlist,
+  removeFromWatchlist,
+  getWatchlistCoinsIdFromLocalStorage,
+  getWachlistCoinsData,
+} from "../../helper/functions";
 
 const initialState = {
   coinsId: [],
-  coins: []
+  coinsData: []
 };
 
 const watchlistReducer = (state = initialState, action) => {
@@ -18,7 +23,7 @@ const watchlistReducer = (state = initialState, action) => {
         ...removeFromWatchlist(state, action.payload)
       };
 
-    case "GET_WATCHLIST_COINSID_FROM_LOCAL_STORAGE":
+    case "GET_WATCHLIST_COINS_ID_FROM_LOCAL_STORAGE":
       return {
         ...state,
         ...getWatchlistCoinsIdFromLocalStorage()

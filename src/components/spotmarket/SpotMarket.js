@@ -8,7 +8,7 @@ import Pagination from "./Pagination";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { SET_PAGINATION_CONFIGS } from "../../redux/pagiantion/paginationActions";
-import { GET_WATCHLIST_COINSID_FROM_LOCAL_STORAGE } from '../../redux/watchlist/watchlistActions';
+import { GET_WATCHLIST_COINS_ID_FROM_LOCAL_STORAGE } from '../../redux/watchlist/watchlistActions';
 
 const SpotMarket = () => {
   const dispatch = useDispatch();
@@ -24,14 +24,14 @@ const SpotMarket = () => {
     !paginationState.paginatedCoins.length && dispatch(SET_PAGINATION_CONFIGS(coins));
 
     //To get watchlist coins id from local storage
-    dispatch(GET_WATCHLIST_COINSID_FROM_LOCAL_STORAGE())
+    dispatch(GET_WATCHLIST_COINS_ID_FROM_LOCAL_STORAGE())
 
     // eslint-disable-next-line
   }, [coinsState]);
 
   // Error handling
   if (error) return (
-    <div className="flex flex-1 items-center justify-center font-semibold">
+    <div className="flex items-center justify-center flex-1 font-semibold">
       {error}
     </div>
   )

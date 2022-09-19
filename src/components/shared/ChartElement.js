@@ -2,7 +2,7 @@ import React from "react";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { CHANGE_CHART_DATE } from "../../redux/coinData/coinActions";
+import { CHANGE_CHART_DATE_FORMAT } from "../../redux/coinData/coinActions";
 
 // Moment js
 import moment from "moment";
@@ -51,44 +51,44 @@ const ChartElement = () => {
       {/* Line Chart */}
       <Line options={options} data={data} />
       
-      {/* Format Btns */}
-      <div className="flex justify-center mt-5 mx-auto rounded w-fit">
+      {/* Time format Btns */}
+      <div className="flex justify-center rounded w-fit mt-5 mx-auto">
         <button
-          className={`${ defaultChartDate.format === "ha" ? "bg-amber-300 text-black" : "" }
-            border border-amber-300 text-amber-300 rounded text-md mx-2 w-12 transition duration-50
-            active:scale-90`
+          className={`${ defaultChartDate.format === "ha" && "bg-amber-300 text-black" }
+            border border-amber-300 text-amber-300 rounded text-md w-12 transition duration-50 
+            active:scale-90 mx-2`
           }
-          onClick={() => dispatch(CHANGE_CHART_DATE(chartData.daily))}
+          onClick={() => dispatch(CHANGE_CHART_DATE_FORMAT(chartData.daily))}
         >
           24h
         </button>
 
         <button
-          className={`${ defaultChartDate.format === "DD MMM" ? "bg-amber-300 text-black" : "" }
-            border border-amber-300 text-amber-300 rounded text-md mx-2 w-12 transition duration-50
-            active:scale-90`
+          className={`${ defaultChartDate.format === "DD MMM" && "bg-amber-300 text-black" }
+            border border-amber-300 text-amber-300 rounded text-md w-12 transition duration-50
+            active:scale-90 mx-2`
           }
-          onClick={() => dispatch(CHANGE_CHART_DATE(chartData.weekly))}
+          onClick={() => dispatch(CHANGE_CHART_DATE_FORMAT(chartData.weekly))}
         >
           7d
         </button>
 
         <button
-          className={`${ defaultChartDate.format === "MMM DD" ? "bg-amber-300 text-black" : "" }
-            border border-amber-300 text-amber-300 rounded text-md mx-2 w-12 transition duration-50
-            active:scale-90`
+          className={`${ defaultChartDate.format === "MMM DD" && "bg-amber-300 text-black" }
+            border border-amber-300 text-amber-300 rounded text-md w-12 transition duration-50
+            active:scale-90 mx-2`
           }
-          onClick={() => dispatch({ type: "CHANGE_CHART_DATE", payload: chartData.monthly })}
+          onClick={() => dispatch(CHANGE_CHART_DATE_FORMAT(chartData.monthly))}
         >
           30d
         </button>
 
         <button
-          className={`${ defaultChartDate.format === "MMM YYYY" ? "bg-amber-300 text-black" : "" }
-            border border-amber-300 text-amber-300 rounded text-md mx-2 w-12 transition duration-50
-            active:scale-90`
+          className={`${ defaultChartDate.format === "MMM YYYY" && "bg-amber-300 text-black" }
+            border border-amber-300 text-amber-300 rounded text-md w-12 transition duration-50
+            active:scale-90 mx-2`
           }
-          onClick={() => dispatch({ type: "CHANGE_CHART_DATE", payload: chartData.yearly })}
+          onClick={() => dispatch(CHANGE_CHART_DATE_FORMAT(chartData.yearly))}
         >
           1y
         </button>

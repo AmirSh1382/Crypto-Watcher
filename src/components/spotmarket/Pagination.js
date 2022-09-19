@@ -2,7 +2,7 @@ import React from "react";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
-import { NEXT_PAGE, PREV_PAGE, SET_PAGE } from "../../redux/pagiantion/paginationActions";
+import { NEXT_PAGE, PREV_PAGE, CHANGE_PAGE } from "../../redux/pagiantion/paginationActions";
 
 // MUI Icons
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -35,21 +35,23 @@ const Pagination = () => {
       {/* PREV-BTN */}
       <button
         onClick={() => changePage(PREV_PAGE(), "PREV")}
-        className={`${currentPage === 1 ? "opacity-50 cursor-default" : ""}
+        className={`${currentPage === 1 && "opacity-50 cursor-default"}
             flex items-center justify-center border border-amber-300 rounded-full 
-            transition duration-100 hover:opacity-70 active:scale-90 mr-1 w-7 h-7`}
+            transition duration-100 hover:opacity-70 active:scale-90 mr-1 w-7 h-7`
+        }
       >
         <ArrowBackIosNewIcon sx={{padding: "3px"}} />
       </button>
 
       {/* Number-BTNS */}
-      {paginationBtns.map((btn) => (
+      {paginationBtns.map(btn => (
         <button
           key={btn}
-          onClick={() => changePage(SET_PAGE(btn), "NUMBER")}
+          onClick={() => changePage(CHANGE_PAGE(btn), "NUMBER")}
           className={`${currentPage === btn ? "bg-amber-300 text-black" : "text-amber-300"}
-                border border-amber-300 text-lg rounded-full transition duration-100 w-7 h-7 mx-1
-                hover:opacity-70 active:scale-90`}
+                border border-amber-300 text-lg rounded-full transition duration-100
+                hover:opacity-70 active:scale-90 mx-1 w-7 h-7`
+          }
         >
           {btn}
         </button>
@@ -58,7 +60,7 @@ const Pagination = () => {
       {/* NEXT-BTN */}
       <button
         onClick={() => changePage(NEXT_PAGE(), "NEXT")}
-        className={`${currentPage === pagesCount ? "opacity-50 cursor-default" : ""}
+        className={`${currentPage === pagesCount && "opacity-50 cursor-default"}
             flex items-center justify-center border border-amber-300 rounded-full
             transition duration-100 hover:opacity-70 active:scale-90 ml-1 w-7 h-7`}
       >

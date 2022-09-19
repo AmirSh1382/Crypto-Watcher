@@ -23,7 +23,7 @@ const coinReducer = (state = initialState, action) => {
         error: action.payload,
       };
 
-    case "CHANGE_CHART_DATE":
+    case "CHANGE_CHART_DATE_FORMAT":
       return {
         ...state,
         defaultChartDate: action.payload,

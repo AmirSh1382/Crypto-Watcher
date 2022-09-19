@@ -14,8 +14,8 @@ const PREV_PAGE = () => {
 };
 
 // to go to the selected page based on the page number
-const SET_PAGE = (page) => {
-  return { type: "SET_PAGE", payload: page };
+const CHANGE_PAGE = page => {
+  return { type: "CHANGE_PAGE", payload: page };
 };
 
-export { SET_PAGINATION_CONFIGS, NEXT_PAGE, PREV_PAGE, SET_PAGE };
+export { SET_PAGINATION_CONFIGS, NEXT_PAGE, PREV_PAGE, CHANGE_PAGE };

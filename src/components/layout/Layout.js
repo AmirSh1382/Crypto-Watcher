@@ -10,12 +10,13 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 const Layout = ({ children }) => {
   const [scrollY, setScrollY] = useState(0);
 
+  const [ minHeight, setMinHeight ] = useState(visualViewport.height + "px")
+
   window.addEventListener("scroll", () => {
     setScrollY(window.scrollY);
   });
 
-  const [ minHeight, setMinHeight ] = useState(visualViewport.height + "px")
-
+  // To avoid scrolling in opera browser in mobile 
   window.addEventListener("resize" , () => {
     setMinHeight(visualViewport.height + "px")
   })
@@ -30,7 +31,7 @@ const Layout = ({ children }) => {
       {scrollY > 300 && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-10 left-8 rounded-full bg-amber-300 text-zinc-900
+          className="fixed bottom-9 left-8 rounded-full bg-amber-300 text-zinc-900
             w-9 h-9 cursor-pointer active:scale-75 transition duration-100"
         >
           <KeyboardArrowUpIcon />

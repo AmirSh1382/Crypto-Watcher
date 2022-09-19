@@ -17,7 +17,7 @@ const Coin = ({ coin }) => {
   return (
     <Link to={`/coindetail/${coin.id}`}>
       <div className={`${price_change_percentage_24h > 0 ? "to-green": "to-red" }
-       bg-gradient-to-r cursor-pointer from-black rounded  mb-3`}
+       bg-gradient-to-r from-black cursor-pointer rounded mb-3`}
       >
         <div className="flex justify-between items-center px-5 py-3">
 
@@ -48,10 +48,12 @@ const Coin = ({ coin }) => {
               {price_change_percentage_24h}
               {price_change_percentage_24h > 0 ? <MovingIcon /> : <TrendingDownIcon />}
             </div>
+
             <div className="text-slate-500 text-sm text-end">
               ${current_price.toLocaleString()}
             </div>
           </div>
+
         </div>
       </div>
     </Link>

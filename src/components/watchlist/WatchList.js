@@ -1,45 +1,58 @@
-import React, { useEffect } from 'react';
-
-// Redux
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { GET_WATCHLIST_COINS_DATA } from '../../redux/watchlist/watchlistActions';
+import React, { useEffect } from "react";
 
 // Components
-import Coin from '../shared/Coin';
+import Coin from "../shared/Coin";
+
+// React-router-dom
+import { useNavigate } from "react-router-dom";
+
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { GET_WATCHLIST_COINS_DATA } from "../../redux/watchlist/watchlistActions";
+
 
 const WatchList = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
+  const watchlistState = useSelector(state => state.watchlistState);
 
-    const watchlistState = useSelector(state => state.watchlistState)
+  const coinsState = useSelector(state => state.coinsState);
 
-    const coinsState = useSelector(state => state.coinsState)
+  const { coinsId, coinsData } = watchlistState;
 
-    const { coinsId, coins } = watchlistState
+  useEffect(() => {
+    // to avoid happening an error when refreshing the page
+    !coinsState.coins.length && navigate("/");
 
-    useEffect(() => {
-        // to avoid happening an error when refreshing the page
-        !coinsState.coins.length && navigate("/")
+    // To get watchlist coins data
+    dispatch(GET_WATCHLIST_COINS_DATA(coinsState.coins, coinsId));
 
-        dispatch(GET_WATCHLIST_COINS_DATA(coinsState.coins, coinsId));
+    // eslint-disable-next-line
+  }, []);
 
-        // eslint-disable-next-line
-    }, [])
-    
-    return (
-        <div className="max-w-5xl mx-auto w-full px-6 md:px-12 my-10">
-            <div className="font-bold text-xl">Watchlist</div>
-
-            <div className="mt-5 mb-12">
-                {
-                    coins.length ? coins.map(coin => <Coin key={coin.id} coin={coin} />) : "Watchlist is empty"
-                }
-            </div>
+  if (!coinsData.length) return (
+    <div className="flex items-center justify-center flex-col flex-1">
+        <div className="text-lg font-semibold">
+            Watchlist is empty !
         </div>
-    );
+    </div>
+  )
+
+  return (
+    <div className="max-w-5xl mx-auto w-full px-6 md:px-12 my-10">
+      <div className="font-bold text-xl">
+        Watchlist
+      </div>
+
+      <div className="mt-5 mb-12">
+        {
+          coinsData.map(coin => <Coin key={coin.id} coin={coin} />)
+        }
+      </div>
+    </div>
+  );
 };
 
 export default WatchList;

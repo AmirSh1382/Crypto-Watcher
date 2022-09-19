@@ -30,7 +30,7 @@ const paginationReducer = (state = initialState, action) => {
         ...setPaginatedItems(state, prevPage),
       };
 
-    case "SET_PAGE":
+    case "CHANGE_PAGE":
       return {
         ...setPaginatedItems(state, action.payload),
       };

@@ -12,18 +12,19 @@ import { useParams } from "react-router-dom";
 import MovingIcon from '@mui/icons-material/Moving';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
-// Redux
-import { useSelector, useDispatch } from "react-redux";
-import { getCoinDataRequest } from "../../redux/coinData/coinActions";
-import { RESET_STATE } from "../../redux/coinData/coinActions";
-import { ADD_COIN_TO_WATCHLIST, REMOVE_FROM_WATCHLIST } from "../../redux/watchlist/watchlistActions"
-
 // Fucntions
 import { isInWatchlist } from "../../helper/functions";
 
 // React-toastify
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import { getCoinDataRequest } from "../../redux/coinData/coinActions";
+import { RESET_STATE } from "../../redux/coinData/coinActions";
+import { ADD_COIN_TO_WATCHLIST, REMOVE_FROM_WATCHLIST } from "../../redux/watchlist/watchlistActions"
+
 
 const CoinDetail = () => {
 
@@ -42,7 +43,10 @@ const CoinDetail = () => {
     // To scroll to top on load
     window.scrollTo({top: 0, behavior: "smooth"})
 
+    // To remove previous coin data if it exists
     dispatch(RESET_STATE());
+
+    // To get coin data based on its ID
     dispatch(getCoinDataRequest(id));
 
     // eslint-disable-next-line
@@ -60,12 +64,14 @@ const CoinDetail = () => {
 
   const { current_price, price_change_percentage_24h } = market_data
 
+  // To add a coin to watchlist
   const addToWatchlist = coinId => {
     dispatch(ADD_COIN_TO_WATCHLIST(coinId))
 
     toast.success(`${coinId} added to your watchlist`)
   }
 
+  // To remove a coin from watchlist
   const removeFromWatchlist = coinId => {
     dispatch(REMOVE_FROM_WATCHLIST(coinId))
 
@@ -75,6 +81,13 @@ const CoinDetail = () => {
   return (
     <div className="max-w-5xl w-full mx-auto my-10 px-3 md:px-12">
       <div className="flex items-center flex-col">
+        <ToastContainer 
+          toastStyle={{
+            backgroundColor: "rgb(30,30,30)",
+            color: "rgba(255,255,255,0.9)"
+          }} 
+        />
+
         {/* Img */}
         <img className="w-20 md:w-28" src={image.large} alt={id} />
         {/* Current price */}
@@ -100,35 +113,27 @@ const CoinDetail = () => {
 
       {/* Watch list btn */}
       {
-        <>
-          <ToastContainer 
-            toastStyle={{
-              backgroundColor: "rgb(30,30,30)",
-              color: "rgba(255,255,255,0.9)"
-            }} 
-          />
-          <div className="max-w-5xl mx-auto px-5 py-3 text-end">
-            {
-              isInWatchlist(watchlistState, id) ? (
-                <button 
-                  onClick={() => removeFromWatchlist(id)}
-                  className="border rounded border-rose-700 text-rose-700
-                    transition during-50 py-1 px-2 active:scale-90"
-                  >
-                  Remove From Watchlist
-                </button>
-              ) : (
-                <button 
-                  onClick={() => addToWatchlist(id)}
-                  className="rounded text-black bg-amber-300 
-                    transition during-50 py-1 px-2 active:scale-90"
-                  >
-                  Add To Watchlist
-                </button>
-              )
-            }
-          </div>
-        </>
+        <div className="max-w-5xl mx-auto px-5 py-3 text-end">
+          {
+            isInWatchlist(watchlistState, id) ? (
+              <button 
+                onClick={() => removeFromWatchlist(id)}
+                className="border border-rose-700 rounded text-rose-700
+                  transition during-50 hover:opacity-90 active:scale-90 py-1 px-3"
+                >
+                Remove From Watchlist
+              </button>
+            ) : (
+              <button 
+                onClick={() => addToWatchlist(id)}
+                className="rounded text-black bg-amber-300 transition
+                  during-50 hover:opacity-90 active:scale-90 py-1 px-3"
+                >
+                Add To Watchlist
+              </button>
+            )
+          }
+        </div>
       }
 
       {/* Market Data */}

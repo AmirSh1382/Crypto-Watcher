@@ -29,8 +29,8 @@
 
 @media only screen and (max-width: 700px) {
   .navbar {
-    transform: translateX(-100%);
     background-color: var(--background);
+    transform: translateX(-100%);
     visibility: hidden;
     height: 100%;
     width: 100%;
@@ -71,11 +71,11 @@
     content: "";
     transform: skew(-5deg) translateX(95%) translateY(100%);
     background-color: var(--primary-color);
+    width: 1000px;
+    height: 100%;
     position: absolute;
     bottom: 0px;
     right: 0px;
-    height: 100%;
-    width: 1000px;
     transition: 0.5s all;
     -webkit-transform: skew(-5deg) translateX(95%) translateY(100%);
     -moz-transform: skew(-5deg) translateX(95%) translateY(100%);
@@ -98,13 +98,13 @@
 
   .navbar::before {
     content: "";
+    transform: skew(-5deg) translateX(-95%) translateY(-100%);
+    background-color: var(--primary-color);
+    width: 1000px;
+    height: 100%;
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 1000px;
-    height: 100%;
-    background-color: var(--primary-color);
-    transform: skew(-5deg) translateX(-95%) translateY(-100%);
     transition: 0.5s all;
     -webkit-transform: skew(-5deg) translateX(-95%) translateY(-100%);
     -moz-transform: skew(-5deg) translateX(-95%) translateY(-100%);
@@ -117,8 +117,8 @@
   }
 
   .navbar.open::before {
-    transform: skew(-5deg) translateX(-95%) translateY(0);
     transition-delay: 0.4s;
+    transform: skew(-5deg) translateX(-95%) translateY(0);
     -webkit-transform: skew(-5deg) translateX(-95%) translateY(0);
     -moz-transform: skew(-5deg) translateX(-95%) translateY(0);
     -ms-transform: skew(-5deg) translateX(-95%) translateY(0);
@@ -126,11 +126,10 @@
   }
 
   .navbar ul {
-    display: flex;
+    opacity: 0;
+    visibility: hidden;
     flex-direction: column;
     transform: skew(-5deg);
-    visibility: hidden;
-    opacity: 0;
     -webkit-transform: skew(-5deg);
     -moz-transform: skew(-5deg);
     -ms-transform: skew(-5deg);
@@ -140,6 +139,10 @@
   .navbar.open ul {
     visibility: visible;
     opacity: 1;
+  }
+
+  .navbar li {
+    margin-left: 0;
   }
 
   .navbar a {
@@ -174,15 +177,15 @@
   .navbar a:nth-child(1){
     order: 3;
   }
-
+  
   .navbar a:nth-child(2){
     order: 2;
   }
-
+  
   .navbar a:nth-child(3){
     order: 1;
   }
-
+  
   .navbar.open a:nth-child(1) {
     transition-delay: 1.2s;
   }
@@ -197,20 +200,12 @@
 
   .navbar li.active::before {
     content: "";
-    position: absolute;
-    left: -13px;
-    top: 0;
     background-color: var(--primary-color);
     height: 100%;
     width: 3px;
-  }
-
-  .navbar li:hover {
-    color: var(--primary-hover);
-  }
-
-  .navbar li:hover::before {
-    color: var(--primary-hover);
+    position: absolute;
+    left: -13px;
+    top: 0;
   }
 
   .menuIcon {
