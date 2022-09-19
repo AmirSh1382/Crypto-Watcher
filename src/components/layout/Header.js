@@ -29,8 +29,6 @@ const Header = () => {
     setPath(window.location.pathname)
   })
 
-  console.log(path)
-
   return (
     <header className="shadow-xl w-full">
       <nav className="max-w-5xl flex justify-between mx-auto py-5 px-3 md:px-12">

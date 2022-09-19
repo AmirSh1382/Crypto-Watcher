@@ -30,10 +30,6 @@ const watchlistReducer = (state = initialState, action) => {
         ...getWachlistCoinsData(action.payload.allCoins, action.payload.watchlistCoinsId)
       }
 
-    case "TEST":
-      console.log(state)
-      return state;
-
     default:
       return state;
   }

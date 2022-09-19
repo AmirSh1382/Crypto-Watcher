@@ -47,6 +47,7 @@ const setPaginatedItems = (state, page) => {
 }
 
 const isInWatchlist = (state, coinId) => {
+    console.log(state);
     const mainCoin = state.coinsId.find(coin => coin === coinId)
 
     return mainCoin ? true : false
@@ -83,7 +84,7 @@ const getWachlistCoinsData = (allCoins, watchlistCoinsId) => {
 
 const getWatchlistCoinsIdFromLocalStorage = () => {
 
-    const coinsId = JSON.parse(localStorage.getItem("watchlist"))
+    const coinsId = JSON.parse(localStorage.getItem("watchlist")) ?? []
 
     return { coinsId }
 }
