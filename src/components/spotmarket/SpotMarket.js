@@ -50,7 +50,7 @@ const SpotMarket = () => {
   if (loading) return <SkeletonLoading />
 
   return (
-    <div className="max-w-5xl mx-auto w-full px-6 md:px-12 my-10">
+    <div className="max-w-5xl mx-auto w-full px-6 md:px-12 mt-10">
       <div className="flex justify-between items-center font-bold text-xl">
         <span>Market</span>
 
@@ -109,7 +109,7 @@ const SpotMarket = () => {
       }
 
       {
-        !search.trim() && (
+        !search.length && (
           <div>
             {/* Coins */}
             <div className="mt-5 mb-12">
@@ -117,7 +117,7 @@ const SpotMarket = () => {
             </div>
 
             {/* Pagination */}
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center mb-12">
               <Pagination />
             </div>
           </div>
