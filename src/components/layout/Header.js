@@ -47,7 +47,7 @@ const Header = () => {
         {/* NAV ITEMS */}
         <div>
           <div className={`${styles.navbar} ${isOpen ? styles.open : styles.hide}`}>
-            <CloseIcon className={styles.closeIcon} />
+            <CloseIcon className={styles.closeIcon} onClick={closeMenu} />
             <ul>
               <Link to="/aboutproject" onClick={closeMenu}>
                 <li className={pathname.includes("/aboutproject") ? styles.active : ""}>
