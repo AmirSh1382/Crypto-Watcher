@@ -124,7 +124,7 @@ const CoinMarketData = () => {
             <div className="text-slate-400 text-sm mb-1">
               Total Supply
             </div>
-            <div>
+            <div className="font-semibold">
               {total_supply.toLocaleString()}
             </div>
           </div>
