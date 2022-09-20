@@ -21,7 +21,7 @@ const Coin = ({ coin }) => {
       <div className={`${price_change_percentage_24h > 0 ? "to-green": "to-red" }
        bg-gradient-to-r from-black cursor-pointer rounded mb-3`}
       >
-        <div className="flex justify-between items-center px-5 py-3">
+        <div className="flex justify-between items-center px-3 py-3">
 
           <div className="flex items-center flex-1">
             {/* Img */}

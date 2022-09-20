@@ -16,10 +16,10 @@ const SkeletonLoading = () => {
   }, []);
 
   return (
-    <div className="container max-w-5xl mx-auto px-5 md:px-12 my-10">
+    <div className="container max-w-5xl mx-auto px-6 md:px-12 my-10">
       <div className="font-bold text-xl">Market</div>
-      {skeleton.map((item) => (
-        <div className="flex items-center mb-3 mt-5 px-5" key={item}>
+      {skeleton.map(item => (
+        <div className="flex items-center mb-3 mt-5 px-3" key={item}>
           <Skeleton
             sx={{backgroundColor: "rgba(41, 54, 68)",
               width: "40px",
