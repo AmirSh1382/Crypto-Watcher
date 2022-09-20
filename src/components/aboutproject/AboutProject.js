@@ -17,7 +17,7 @@ const AboutProject = () => {
   }, []);
 
   return (
-    <div className="max-w-fit mx-auto w-full mt-16 mb-10 px-2 md:px-12">
+    <div className="max-w-fit mx-auto w-full my-16 px-2 md:px-12">
       <div>
         <div className="text-amber-300 font-semibold">
           Project Tech Stack and Utilities :

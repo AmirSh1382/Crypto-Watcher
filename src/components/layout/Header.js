@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // React-router-dom
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // MUI Icon
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
@@ -15,7 +15,7 @@ const Header = () => {
   
   const [isOpen, setIsOpen] = useState(false);
   
-  const [path, setPath] = useState("/");
+  const { pathname } = useLocation()
   
   const openMenu = () => {
     setIsOpen(true);
@@ -28,17 +28,13 @@ const Header = () => {
 
     document.body.style.overflow = "auto"
   };
-
-  window.addEventListener("popstate" , () => {
-    setPath(window.location.pathname)
-  })
   
   return (
     <header className="shadow-xl w-full">
       <nav className="max-w-5xl flex justify-between mx-auto py-5 px-3 md:px-12">
 
         {/* LOGO */}
-        <Link to="/" onClick={() => setPath("/")}>
+        <Link to="/">
           <div className="flex items-center">
             <PaidOutlinedIcon className="text-amber-300" />
             <div className="font-bold">
@@ -51,22 +47,22 @@ const Header = () => {
         {/* NAV ITEMS */}
         <div>
           <div className={`${styles.navbar} ${isOpen ? styles.open : styles.hide}`}>
-            <CloseIcon className={styles.closeIcon} onClick={closeMenu} />
+            <CloseIcon className={styles.closeIcon} />
             <ul>
-              <Link to="/aboutproject" onClick={() => {setPath("/aboutproject") ;closeMenu()}}>
-                <li className={path === "/aboutproject" ? styles.active : ""}>
+              <Link to="/aboutproject" onClick={closeMenu}>
+                <li className={pathname.includes("/aboutproject") ? styles.active : ""}>
                   About Project
                 </li>
               </Link>
 
-              <Link to="/watchlist" onClick={() => {setPath("/watchlist") ;closeMenu()}}>
-                <li className={path === "/watchlist" ? styles.active : ""}>
+              <Link to="/watchlist" onClick={closeMenu}>
+                <li className={pathname.includes("/watchlist") ? styles.active : ""}>
                   Watchlist
                 </li>
               </Link>
 
-              <Link to="/" onClick={() => {setPath("/") ;closeMenu()}}>
-                <li className={path === "/" ? styles.active : ""}>
+              <Link to="/" onClick={closeMenu}>
+                <li className={pathname.includes("/spotmarket") ? styles.active : ""}>
                   Spot Markets
                 </li>
               </Link>

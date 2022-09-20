@@ -8,14 +8,16 @@ import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import { shorten } from "../../helper/functions";
 
 // React-router-dom
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Coin = ({ coin }) => {
 
   const { name, symbol, image, total_volume, current_price, market_cap, price_change_percentage_24h } = coin
 
+  const  { pathname }  = useLocation()
+
   return (
-    <Link to={`/coindetail/${coin.id}`}>
+    <Link to={`${pathname}/coindetail/${coin.id}`}>
       <div className={`${price_change_percentage_24h > 0 ? "to-green": "to-red" }
        bg-gradient-to-r from-black cursor-pointer rounded mb-3`}
       >

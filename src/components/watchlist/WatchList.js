@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import Coin from "../shared/Coin";
 
 // React-router-dom
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -24,7 +24,7 @@ const WatchList = () => {
 
   useEffect(() => {
     // to avoid happening an error when refreshing the page
-    !coinsState.coins.length && navigate("/");
+    !coinsState.coins.length && navigate("/spotmarket");
 
     // To get watchlist coins data
     dispatch(GET_WATCHLIST_COINS_DATA(coinsState.coins, coinsId));
@@ -37,6 +37,13 @@ const WatchList = () => {
         <div className="text-lg font-semibold">
             Watchlist is empty !
         </div>
+        <Link 
+          to="/spotmarket"
+          className="bg-amber-300 text-black rounded px-3 py-1 mt-3
+          transition during-50 hover:opacity-90 active:scale-95"
+        >
+          Add coin
+        </Link>
     </div>
   )
 
