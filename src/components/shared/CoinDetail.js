@@ -83,7 +83,7 @@ const CoinDetail = () => {
       <div className="flex items-center flex-col">
         <ToastContainer 
           toastStyle={{
-            backgroundColor: "rgb(30,30,30)",
+            backgroundColor: "rgb(25,25,25)",
             color: "rgba(255,255,255,0.9)"
           }} 
         />
