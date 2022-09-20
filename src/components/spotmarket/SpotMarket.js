@@ -90,14 +90,26 @@ const SpotMarket = () => {
       </div>
 
       {
-        (searchedCoins.length && search.trim()) ? (
+        (searchedCoins.length > 0) && search.trim() && (
           // Searched coins
           <div className="mt-5 mb-12">
             {
               searchedCoins.map(coin => <Coin key={coin.id} coin={coin} />)
             }
           </div>
-        ) : (
+        )
+      }
+
+      {
+        (searchedCoins.length === 0) && (
+          <div className="font-semibold text-center text-xl my-12">
+            Nothing found !
+          </div>
+        )
+      }
+
+      {
+        !search.trim() && (
           <div>
             {/* Coins */}
             <div className="mt-5 mb-12">
