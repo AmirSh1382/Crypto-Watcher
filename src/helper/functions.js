@@ -95,6 +95,21 @@ const setWatchlistCoinsIdToLocalStorage = coins => {
     localStorage.setItem("watchlist", JSON.stringify(coins))
 }
 
+// To search coins based on the main coin Id that comes from search input
+const searchCoins = (allCoins, mainCoinId) => {
+  
+  let searchedCoins = []
+
+  if(mainCoinId.trim()){
+    searchedCoins = allCoins.filter(coin => coin.id.toUpperCase().includes(mainCoinId.toUpperCase()))
+
+    searchedCoins = searchedCoins.slice(0, 50)
+  }
+
+  return searchedCoins
+}
+
+export { searchCoins }
 export { shorten, setPaginationConfigs, setPaginatedItems }
 export { addToWatchlist, removeFromWatchlist, isInWatchlist }
 export { getWatchlistCoinsIdFromLocalStorage, getWachlistCoinsData }

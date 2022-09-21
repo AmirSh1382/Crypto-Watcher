@@ -14,14 +14,14 @@ const coinsReducer = (state = initialState, action) => {
 
     case "GET_ALL_COINS_SUCCESS":
       return {
-        error: "",
+        ...state,
         loading: false,
         coins: action.payload,
       };
 
     case "GET_ALL_COINS_FAILURE":
       return {
-        coins: [],
+        ...state,
         loading: false,
         error: action.payload,
       };

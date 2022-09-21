@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 
 // Componetns
 import SkeletonLoading from "./SkeletonLoading";
@@ -14,6 +14,9 @@ import { GET_WATCHLIST_COINS_ID_FROM_LOCAL_STORAGE } from '../../redux/watchlist
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
+// Functions
+import { searchCoins } from "../../helper/functions";
+
 const SpotMarket = () => {
   const dispatch = useDispatch();
 
@@ -27,7 +30,10 @@ const SpotMarket = () => {
 
   const [ search, setSearch ] = useState("")
 
-  const searchedCoins = coins.filter(coin => coin.id.toUpperCase().includes(search.toUpperCase()))
+  const [ searchedCoins, setSearchedCoins ] = useState([])
+
+  // eslint-disable-next-line
+  const [ isPending, startTransition ] = useTransition()
 
   useEffect(() => {
     // To avoid setting configs several times
@@ -35,9 +41,19 @@ const SpotMarket = () => {
 
     //To get watchlist coins id from local storage
     dispatch(GET_WATCHLIST_COINS_ID_FROM_LOCAL_STORAGE())
-
+    
     // eslint-disable-next-line
   }, [coinsState]);
+  
+  const searchHandler = event => {
+    setSearch(event.target.value)
+  
+    // To change the search state first and then the searchedCoins state
+    // To avoid lag during searching
+    startTransition(() => {
+      setSearchedCoins(searchCoins(coins, event.target.value))
+    }) 
+  }
 
   // Error handling
   if (error) return (
@@ -59,7 +75,7 @@ const SpotMarket = () => {
           <input 
             type="text" 
             value={search}
-            onChange={event => setSearch(event.target.value)}
+            onChange={searchHandler}
             placeholder="Search something..."
             className={`${!searchDisplay && "translate-x-full ml-5 opacity-0"} 
               border border-gray-500 rounded text-slate-300 outline-none w-full 
@@ -89,8 +105,9 @@ const SpotMarket = () => {
         </div>
       </div>
 
+      {/* Searched Coins Result */}
       {
-        (searchedCoins.length > 0) && search.trim() && (
+        searchedCoins.length > 0 && search.length > 0 && (
           // Searched coins
           <div className="mt-5 mb-12">
             {
@@ -100,16 +117,18 @@ const SpotMarket = () => {
         )
       }
 
+      {/* Nothing found when searched coins result is empty */}
       {
-        (searchedCoins.length === 0) && (
+        (!searchedCoins.length && search) && (
           <div className="font-semibold text-center text-xl my-12">
             Nothing found !
           </div>
         )
       }
 
+      {/* All coins ( it'll be displayed when search state length is false ) */}
       {
-        !search.length && (
+        (!search.length) && (
           <div>
             {/* Coins */}
             <div className="mt-5 mb-12">
