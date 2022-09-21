@@ -75,6 +75,7 @@ const AboutProject = () => {
             <span className="mt-1">Bootstrap 5</span>
             <span className="mt-1">Tailwind Css</span>
             <span className="mt-1">JavaScript</span>
+            <span className="mt-1">Material UI</span>
             <span className="mt-1">React Js</span>
           </div>
         </div>
