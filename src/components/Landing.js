@@ -30,6 +30,7 @@ const Landing = () => {
       <Route path="/spotmarket/coindetail/:id" element={<CoinDetail />} />
       <Route path="/watchlist/coindetail/:id" element={<CoinDetail /> } />
       <Route path="/" element={<Navigate to="/spotmarket" /> } />
+      <Route path="/*" element={<Navigate to="/spotmarket" /> } />
     </Routes>
   );
 };
