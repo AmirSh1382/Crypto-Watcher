@@ -27,7 +27,8 @@ const AboutProject = () => {
           <span className="mt-1">Tailwind CSS</span>
           <span className="mt-1">Pure CSS</span>
           <span className="mt-1">Material Icons</span>
-          <span className="mt-1">React hooks</span>
+          <span className="mt-1">Chart js</span>
+          <span className="mt-1">Moment js</span>
           <span className="mt-1">Redux state manager - React Redux</span>
         </div>
       </div>
