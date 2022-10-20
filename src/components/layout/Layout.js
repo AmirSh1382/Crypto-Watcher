@@ -7,6 +7,9 @@ import Footer from "./Footer";
 // MUI Icons
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
+// Styles
+import styles from "./ScrollBar.module.css"
+
 const Layout = ({ children }) => {
   const [scrollY, setScrollY] = useState(0);
 
@@ -22,7 +25,7 @@ const Layout = ({ children }) => {
   })
 
   return (
-    <div style={{minHeight: `${minHeight}`}} className="flex flex-col">
+    <div style={{minHeight: `${minHeight}`}} className={`${styles.scrollBar} flex flex-col`}>
       <Header />
       {children}
       <Footer />
