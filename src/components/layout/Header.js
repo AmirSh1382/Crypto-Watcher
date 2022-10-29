@@ -9,7 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
 // Styles
-import styles from "./Header.module.css";
+import styles from "../../styles/modules/Header.module.scss";
 
 const Header = () => {
   

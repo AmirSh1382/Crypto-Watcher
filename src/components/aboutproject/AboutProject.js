@@ -25,7 +25,7 @@ const AboutProject = () => {
         <div className="flex flex-col text-sm pl-4">
           <span className="mt-1">React Js</span>
           <span className="mt-1">Tailwind CSS</span>
-          <span className="mt-1">Pure CSS</span>
+          <span className="mt-1">Sass</span>
           <span className="mt-1">Material Icons</span>
           <span className="mt-1">Chart js</span>
           <span className="mt-1">Moment js</span>

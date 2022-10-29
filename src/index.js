@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 
 // Styles
-import "./index.css";
+import "./styles/index.scss";
 
 // Axios
 import axios from "axios";

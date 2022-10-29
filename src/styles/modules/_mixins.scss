@@ -1,0 +1,12 @@
+@mixin media ($length) {
+    @media (max-width: $length) {
+        @content;
+    }
+}
+
+@mixin flex ($justify, $align, $direction: row) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+}
